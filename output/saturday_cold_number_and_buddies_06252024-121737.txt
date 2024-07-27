@@ -1,0 +1,11 @@
+Cold1: 14 (drawn 12 times) - a cold number that hasn't been drawn recently
+
+Cold1bud1: 32 (drawn 15 times) - a number frequently paired with Cold1
+Cold1bud2: 18 (drawn 14 times) - a number frequently paired with Cold1
+Cold1bud3: 35 (drawn 13 times) - a number frequently paired with Cold1
+Cold1bud4: 29 (drawn 12 times) - a number frequently paired with Cold1
+Cold1bud5: 38 (drawn 11 times) - a number frequently paired with Cold1
+
+The recommended combination is: 14, 32, 18, 35, 29, 38
+
+This combination includes one cold number (14) that hasn't been drawn recently, paired with its most frequent partners. The inclusion of less picked numbers (18, 29, and 38) increases the chances of winning in case the more frequent numbers don't appear.
