@@ -1,13 +1,15 @@
 [tool.poetry]
 name = "agent-lottery-picker"
 version = "0.1.0"
-description = ""
-authors = ["ayamam1 <163369340+ayamam1@users.noreply.github.com>"]
+description = "A lottery picker using on agentic AI"
+authors = ["gusyama <77478609+gusyama@users.noreply.github.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = ">=3.11,<=3.13"
-crewai = "^0.30.11"
+python = ">=3.10,<=3.13"
+crewai = "^0.51.1"
+langchain-groq = "^0.1.9"
+crewai-tools = "^0.8.3"
 
 
 [build-system]

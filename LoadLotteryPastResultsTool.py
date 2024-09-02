@@ -1,18 +1,22 @@
 import csv
 import os
 from crewai_tools.tools.base_tool import BaseTool
-from datetime import datetime
+from datetime import datetime, timedelta
 from dotenv import load_dotenv
-from langchain.tools import Tool
 from pathlib import Path
-from pydantic import ValidationError
-from pydantic.v1 import BaseModel, Field
+from pydantic import BaseModel, ValidationError
+from pydantic.fields import ClassVar
 from typing import List, Type
-from SaturdayLottoResult import LotteryToolOutput
-
+from SaturdayLottoResult import SaturdayLottoResult, LotteryToolOutput
 
 
 load_dotenv()
+
+
+class Task(BaseModel):
+    expected_output: dict  # Add the expected_output field
+    output_pydantic: BaseModel  # Ensure output_pydantic is a subclass of BaseModel
+
 
 def parse_lottery_results(file_path: str) -> LotteryToolOutput:
     lottery_results = []
@@ -20,10 +24,20 @@ def parse_lottery_results(file_path: str) -> LotteryToolOutput:
     with open(file_path, mode='r', newline='') as file:
         reader = csv.DictReader(file)
         
+        current_date = datetime.now().date()
+        
         for row in reader:
             try:
-                result = LotteryToolOutput(
-                    date=datetime.strptime(row['Date'], '%d/%m/%Y').date(),
+                result_date = datetime.strptime(row['Date'], '%d/%m/%y').date()
+        
+                # Calculate the date 1 year ago from the current date
+                one_year_ago = current_date - timedelta(days=365)
+                
+                if result_date < one_year_ago:
+                    break  # Exit the loop if the result date is more than 1 year ago
+        
+                result = SaturdayLottoResult(
+                    date = result_date,
                     WinningNumber1=int(row['#1']),
                     WinningNumber2=int(row['#2']),
                     WinningNumber3=int(row['#3']),
@@ -45,11 +59,11 @@ class LoadLotteryPastResultsTool(BaseTool):
     description: str = (
         "Fetches all past lottery results from csv file."
     )
-    return_schema: Type[BaseModel] = LotteryToolOutput
+    return_schema: ClassVar[Type[SaturdayLottoResult]] = SaturdayLottoResult
     
 
     def _run(self) -> LotteryToolOutput:
-        file_path = os.getenv("GROQ_API_KEY")
+        file_path = os.getenv("LOTTERY_PAST_RESULTS_PATH")
         return parse_lottery_results(file_path)
 
 

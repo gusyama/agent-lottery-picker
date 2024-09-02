@@ -1,5 +1,6 @@
 import os
 import time
+import datetime
 from crewai import Agent, Crew, Task
 from langchain_groq import ChatGroq
 from dotenv import load_dotenv
@@ -13,12 +14,15 @@ lotto_type = 'Saturday Lotto'
 country = 'Australia'
 lottery = SaturdayLottoPicker()
 agent=lottery.lottery_expert_agent()
+DATE_FORMAT="%m%d%Y-%H%M%S"
+current_date_time = datetime.datetime.now().strftime(DATE_FORMAT)
 
 crew = Crew(
     agents=[
         agent
     ],
     tasks=[
+        lottery.past_result_task(agent),
         lottery.result_search_task(agent, lotto_type, country),
         # lottery.implement_strategy_task(agent, lotto_type, country),
         # lottery.two_hot_number_and_relationship_task(agent),
@@ -28,6 +32,7 @@ crew = Crew(
         lottery.pattern_and_buddies_task(agent),
         lottery.sequence_reviewer_task(agent, lotto_type, country, 5),  
     ],
+    output_log_file=f"output/saturday_lotto_{current_date_time}.txt"
     #max_rpm=29
 )
 

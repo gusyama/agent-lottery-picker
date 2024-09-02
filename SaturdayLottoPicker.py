@@ -1,9 +1,12 @@
 import os
 import time
 import datetime
-from crewai import Agent, Crew, Task
+from crewai import Agent, Task
 from langchain_groq import ChatGroq
 from dotenv import load_dotenv
+from typing import List
+from LoadLotteryPastResultsTool import LoadLotteryPastResultsTool
+from SaturdayLottoResult import LotteryToolOutput
 
 load_dotenv()
 
@@ -26,7 +29,6 @@ class SaturdayLottoPicker():
         return Agent(
             role="Lottery Expert",
             goal=f"""
-                Lottery expert goals:
                 Understand the patterns and the relationship between numbers being picked together in a specific order.
                 Consider the most picked numbers and how often they get picked, such as, based on past results patterns how long in a row they get picked or how long they don't get picked
                 Analize the pattern of less picked numbers and how often they dont get picked, this can increase a chance of the number being picked in case of the number has not been picked for a long period]
@@ -48,18 +50,18 @@ class SaturdayLottoPicker():
         output_file=f"output/{lottery}_strategy_{current_date_time}.txt"
         return Task(
             description=f"""
-                Use the {website} to find all past results of {country} {lottery}, remember to ensure the order of drawn numbers are as originally picked.
-                If you dont find it, search online for {country} {lottery} past drawn numbers.
-                Make a list of the past results of 1 year where each line is a drawing result, and its column as: date, all drawn numbers in its original sequence with spaces between them and then the supplementary numbers
+                Use the tool {LoadLotteryPastResultsTool} to get the past 1 year of past results
                  """,
             agent=agent,
+            tools=[LoadLotteryPastResultsTool()],
             output_file=output_file,
+            #output_pydantic=LotteryToolOutput,
+            # output_pydantic=List[LotteryResult],
             expected_output=f"Make a list of {lottery} past results of 1 year where each line is a drawing result, and its column as: date, all drawn numbers in its original sequence with spaces between them, and the supplementary numbers.",
             callback=time.sleep(5)
         )
         
     
-    # TODO re write to OZ Saturday Lotto specifically 
     def result_search_task(self, agent, lottery, country):
         lottery_type=country + " " + lottery
         website=os.getenv(country.upper() + "_URL")
@@ -67,10 +69,9 @@ class SaturdayLottoPicker():
         output_file=f"output/{lottery_type}_past_results_{current_date_time}.txt"
         return Task(
             description=f"""
-                Research to understand how {lottery_type} game works, how many winning numbers need to be picked including the supplementary number
-                Research to ensure you understand how many winning numbers need to be picked per game and how many supplementary numbers to pick as well (if needed), there are lotteries such as Powerball that the supplementary number is included in the game
-                You can use this website {website} to search and find the past 1 year of lottery results from {lottery_type}, which the sequence number must be in the order it was picked.
-                This will preserve the probability of the number being picked together in order.
+                {os.getenv("SATURDAY_LOTTO_RULES")}
+                {os.getenv("SATURDAY_LOTTO_DRAWN")}
+                Get the past results from {self.past_result_task}            
                 Understand the patterns and the relationship between numbers being picked together in a specific order.
                 Consider the most picked numbers and how often they get picked, such as, based on past results patterns how long in a row they get picked or how long they don't get picked
                 Analize the pattern of less picked numbers and how often they dont get picked, this can increase a chance of the number being picked in case of the number has not been picked for a long period]
@@ -89,7 +90,7 @@ class SaturdayLottoPicker():
         output_file=f"output/{lottery_type}_past_results_{current_date_time}.txt"
         return Task(
             description=f"""
-                Use the top 5 best strategies to win jackpot in {lottery_type} identified for task 'result_search_task'.
+                Use the top 5 best strategies to win jackpot in {lottery_type} identified for task {self.result_search_task}.
                 Ensure no repeting number is in the selected winning numbers and it follows the rules.
                  """,
             agent=agent,
