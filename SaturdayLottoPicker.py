@@ -45,7 +45,7 @@ class SaturdayLottoPicker():
         
 
     def past_result_task(self, agent, lottery='Saturday Lotto', country='Australia'):
-        website=os.getenv(country.upper() + "_URL")
+        #website=os.getenv(country.upper() + "_URL")
         current_date_time = datetime.datetime.now().strftime(self.DATE_FORMAT)        
         output_file=f"output/{lottery}_strategy_{current_date_time}.txt"
         return Task(
@@ -64,7 +64,7 @@ class SaturdayLottoPicker():
     
     def result_search_task(self, agent, lottery, country):
         lottery_type=country + " " + lottery
-        website=os.getenv(country.upper() + "_URL")
+        #website=os.getenv(country.upper() + "_URL")
         current_date_time = datetime.datetime.now().strftime(self.DATE_FORMAT)        
         output_file=f"output/{lottery_type}_past_results_{current_date_time}.txt"
         return Task(
@@ -204,7 +204,7 @@ class SaturdayLottoPicker():
                 Ensure each game have the correct picked numbers.
                 Ensure {number_of_sequence} games were picked and {rules}.
                 Ensure the sequence is made of either 3 evens and 3 odds numbers or 4 evens and 2 odds or 2 evens and 4 odds.
-                Ensure that each game the sum of the number of the game falls within the calculated range of 56 to 220
+                Ensure that each game the sum of the number of the game falls within the calculated range of 79 and 243
                 Ensure the sequence game numbers are different and a single number do not repeat more than 4 times within all games, otherwise ask the agent to pick another sequence.
             """,
             agent=agent,

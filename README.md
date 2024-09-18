@@ -5,53 +5,71 @@
 ## 70 Percent Win
 
 “70 Percent Win” formula when adding up lotto numbers
-make sure the sum of the numbers you play falls within the “70 Percent Most Probable Range of Sums.” 
-Create a range with the lowest sum of all your lottery numbers as well as the highest sum, then choose combos of lottery numbers within that range. Consider a 5/55 drawing:
+The below is the theory applied to 5/55 lottery (5 drawn numbers for each sequence with number from 1 to 55)
+Make sure the sum of the numbers you play falls within the “70 Percent Most Probable Range of Sums.” 
+Create a range with the lowest sum of all your lottery numbers as well as the highest sum, 
+Then choose combos of lottery numbers within that range. 
+Consider a 5/55 drawing:
 1+2+3+4+5=15
 51+52+53+54+55=265
 Studies suggest that the “70 Percent Range” for 5/55 includes sets of numbers that add up to sums between 104 and 176.
 
-ChatGTP
-To apply the "70 Percent Win" strategy to a 6/45 lottery, where we need to select sets of numbers whose sums fall within the most probable range of sums (104 to 176), we can proceed as follows:
+## ChatGTP Prompt
+Given the theory : “70 Percent Win” formula when adding up lotto numbers 
+The below is the theory applied to 5/55 lottery (5 drawn numbers for each sequence with number from 1 to 55)
+Make sure the sum of the numbers you play falls within the “70 Percent Most Probable Range of Sums.” 
+Create a range with the lowest sum of all your lottery numbers as well as the highest sum, 
+Then choose combos of lottery numbers within that range. 
+Consider a 5/55 drawing:
+1+2+3+4+5=15
+51+52+53+54+55=265
+Studies suggest that the “70 Percent Range” for 5/55 includes sets of numbers that add up to sums between 104 and 176.
 
-Understand the Range:
+## ChatGPT Answer
+To apply the "70 Percent Win" strategy to a 6/45 lottery (where 6 numbers are drawn from a range of 1 to 45), you need to calculate the range of sums that corresponds to the “70 Percent Most Probable Range of Sums” for this game, just as you did for the 5/55 lottery.
 
-The range given is 104 to 176 for sums of 5 numbers in a 5/55 lottery.
-For a 6/45 lottery, where we need to select 6 numbers, the sums will naturally be higher.
-Calculate Expected Range for 6/45:
+### Step-by-step breakdown:
 
-To find an approximate range for 6 numbers in a 6/45 lottery, we can adjust based on the total possible sum:
-Lowest possible sum for 6 numbers: 1 + 2 + 3 + 4 + 5 + 6 = 21
-Highest possible sum for 6 numbers: 40 + 41 + 42 + 43 + 44 + 45 = 255
-Adjust for Probability:
+1. **Find the lowest possible sum:**
+   The lowest sum for 6 numbers in a 6/45 lottery is:
+```console
+   1 + 2 + 3 + 4 + 5 + 6 = 21
+```
 
-Since we're interested in the "70 Percent Range," we should focus on the middle 70% of the total possible sums.
-Calculate 70% of the total range (255 - 21 = 234):
-70% of 234 = 0.7 * 234 = 163.8
-Rounded to whole numbers, this gives us approximately 82 on each side of the median sum.
-Determine the 70 Percent Range:
+2. **Find the highest possible sum:**
+   The highest sum for 6 numbers is:
+   ```console
+   40 + 41 + 42 + 43 + 44 + 45 = 255
+   ```
 
-Median sum (middle of the range): (21 + 255) / 2 = 138
-70 Percent Range: Approximately 138 ± 82
-Lower bound: 138 - 82 = 56
-Upper bound: 138 + 82 = 220
-Selecting Sets of Numbers:
+3. **Estimate the 70 Percent Range:**
+   For the 5/55 lottery, the “70 Percent Range” was defined as a portion of the total range (from the lowest to the highest sum) that most likely contains winning combinations. In that case, the sums ranged from 104 to 176, out of a total possible range of 15 to 265. The difference between these sums is:
+   ```console
+   265 - 15 = 250 (total range)
+   ```
+   The "70 Percent Range" was approximately 104 to 176, which covers:
+   ```console
+   176 - 104 = 72 (70 percent of the probable range)
+   ```
 
-Choose sets of 6 numbers where the sum falls within the range of 56 to 220.
-Example Sets:
+   To apply the same approach to the 6/45 lottery:
+   - The total range of sums is 255 - 21 = 234
+   - We need to find the middle 70 percent of this range.
 
-Generate sets of 6 numbers that add up to sums within 56 to 220.
-For instance, you could consider sets like:
-Set 1: 1, 10, 20, 30, 40, 45 (sum = 146)
-Set 2: 5, 15, 25, 35, 42, 48 (sum = 170)
-Set 3: 8, 18, 28, 38, 41, 48 (sum = 181)
-Set 4: 3, 13, 23, 33, 43, 45 (sum = 160)
-Set 5: 2, 12, 22, 32, 42, 44 (sum = 154)
-Set 6: 7, 17, 27, 37, 47, 45 (sum = 180)
-Verification:
+4. **Calculate the 70 Percent Range for 6/45:**
+   - 70% of the total range is 0.70 x 234 = 163.8.
+   - To find the “70 Percent Range,” estimate the lower and upper bounds:
+     - Lower bound: ((234 - 163.8) / 2) + 21 => 58.1 + 21 &#8776; 79
+     - Upper bound: 79 + 163.8 &#8776; 243
 
-### Australian Saturday Lottery (range of 56 to 220)
-Ensure that each set's sum falls within the calculated range of 56 to 220.
+So, the “70 Percent Range” for a 6/45 lottery would likely be **sums between 79 and 243**.
+
+### Conclusion:
+To apply the “70 Percent Win” strategy to a 6/45 lottery, select combinations of numbers whose sum falls between **79 and 243**. This sum range is where 70% of the probable winning combinations would be according to this theory.
+
+
+### Australian Saturday Lottery (range of 79 and 243)
+Ensure that each set's sum falls within the calculated range of 79 and 243.
 By following this strategy, you aim to select sets of numbers that statistically have a higher chance of falling within the "70 Percent Most Probable Range of Sums," thus potentially increasing your odds of winning in the lottery. Adjust the numbers as necessary based on the specific draw and your preferences.
 
 
