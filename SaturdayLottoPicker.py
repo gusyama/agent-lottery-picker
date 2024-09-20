@@ -197,15 +197,13 @@ class SaturdayLottoPicker():
         rules=os.getenv(lottery_type.upper() + "_RULES")
         return Task(
             description=f"""
-                Ensure there are {number_of_sequence} games picked for {lottery_type} and each game has the required sequence number.
-                Check all picked games against {lottery_type} rules and ensure they are all valid games.
+                Ensure there are {number_of_sequence} games picked for {lottery_type} and each game 6 sequence number.
+                Each number must be between 1 to 45.
+                Ensure there are not repeated numbers within the sequence numbers.
                 Ensure the strategy is well implemented and numbers make sense.
-                Ensure there are {number_of_sequence} games.
-                Ensure each game have the correct picked numbers.
-                Ensure {number_of_sequence} games were picked and {rules}.
                 Ensure the sequence is made of either 3 evens and 3 odds numbers or 4 evens and 2 odds or 2 evens and 4 odds.
-                Ensure that each game the sum of the number of the game falls within the calculated range of 79 and 243
-                Ensure the sequence game numbers are different and a single number do not repeat more than 4 times within all games, otherwise ask the agent to pick another sequence.
+                Ensure that each game the sum of the number of the game falls within the calculated range of 79 and 243.
+                Ensure the number will not repeat more than 3 times across all final selected games.
             """,
             agent=agent,
             expected_output=f"Ensure games are valid against its rules, and a perfect strategy for picking the numbers were applied",
