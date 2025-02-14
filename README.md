@@ -1,6 +1,6 @@
 
 
-# LOttery Strategies
+# Lottery Strategies
 
 ## 70 Percent Win
 

@@ -40,7 +40,9 @@ class SaturdayLottoPicker():
                 
                 """,
             verbose=True,
-            llm=self.llm
+            llm=self.llm,
+            max_iterations=10000,  # Increase the iteration limit
+            max_time=7200  # Increase the time limit to 2 hours
         )
         
 
@@ -209,5 +211,4 @@ class SaturdayLottoPicker():
             expected_output=f"Ensure games are valid against its rules, and a perfect strategy for picking the numbers were applied",
             callback=time.sleep(5)
         )
-    
-    
+
